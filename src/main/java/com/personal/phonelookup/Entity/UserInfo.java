@@ -4,8 +4,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 import org.springframework.stereotype.Component;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Component
@@ -16,20 +20,32 @@ public class UserInfo {
 	private String name;
 	private String msisdn;
 	private String email;
+	//private String contactOf;
 	private int spamCount = 0;
+	@JsonIgnore
+	@ManyToOne
+	@JoinColumn(name="contactOf", nullable=false)
+	private UserRegistration user;
 
-	public UserInfo(Long id, String name, String msisdn, String email, int spamCount) {
+	
+	
+	public UserInfo() {
+		
+	}
+	
+	public UserInfo(Long id, String name, String msisdn, String email, String contactOf, int spamCount,
+			UserRegistration user) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.msisdn = msisdn;
 		this.email = email;
+		//this.contactOf = contactOf;
 		this.spamCount = spamCount;
+		this.user = user;
 	}
+
 	
-	public UserInfo() {
-		
-	}
 
 	public Long getId() {
 		return id;
@@ -71,10 +87,28 @@ public class UserInfo {
 		this.spamCount = spamCount;
 	}
 
+//	public String getContactOf() {
+//		return contactOf;
+//	}
+//
+//	public void setContactOf(String contactOf) {
+//		this.contactOf = contactOf;
+//	}
+
+	public UserRegistration getUser() {
+		return user;
+	}
+
+	public void setUser(UserRegistration user) {
+		this.user = user;
+	}
+
 	@Override
 	public String toString() {
-		return "UserInfo [id=" + id + ", name=" + name + ", msisdn=" + msisdn + ", email=" + email + ", spamCount="
-				+ spamCount + "]";
+		return "UserInfo [id=" + id + ", name=" + name + ", msisdn=" + msisdn + ", email=" + email + ", contactOf="
+				+ "contactOf" + ", spamCount=" + spamCount + ", user=" + user + "]";
 	}
+
+	
 
 }

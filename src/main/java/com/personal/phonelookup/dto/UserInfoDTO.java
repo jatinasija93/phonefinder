@@ -6,17 +6,21 @@ public class UserInfoDTO {
 	private String name;
 	private String msisdn;
 	private String email;
+	private String contactOf;
 	private int spamCount = 0;
 
-	public UserInfoDTO(Integer id, String name, String msisdn, String email, int spamCount) {
+	public UserInfoDTO(Integer id, String name, String msisdn, String email, String contactOf, int spamCount,
+			UserRegistrationDTO user) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.msisdn = msisdn;
 		this.email = email;
+		this.contactOf = contactOf;
 		this.spamCount = spamCount;
+		
 	}
-	
+
 	public UserInfoDTO() {
 		
 	}
@@ -61,10 +65,29 @@ public class UserInfoDTO {
 		this.spamCount = spamCount;
 	}
 
-	@Override
-	public String toString() {
-		return "UserInfo [id=" + id + ", name=" + name + ", msisdn=" + msisdn + ", email=" + email + ", spamCount="
-				+ spamCount + "]";
+	public String getContactOf() {
+		return contactOf;
 	}
 
+	public void setContactOf(String contactOf) {
+		this.contactOf = contactOf;
+	}
+
+//	public UserRegistrationDTO getUser() {
+//		return user;
+//	}
+//
+//	public void setUser(UserRegistrationDTO user) {
+//		this.user = user;
+//	}
+
+	@Override
+	public String toString() {
+		return "UserInfoDTO [id=" + id + ", name=" + name + ", msisdn=" + msisdn + ", email=" + email + ", contactOf="
+				+ contactOf + ", spamCount=" + spamCount + ", user=" + "user" + "]";
+	}
+
+	
+
+	
 }
